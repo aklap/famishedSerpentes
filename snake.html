@@ -136,7 +136,31 @@
             }
         };
 
-        //check collision method
+        //check collision method, ask snake obj if it's hitting itself
+        Snake.prototype.checkCollision = function (head) {
+            //check for collision with boundaries of canvas element
+            //list all hit possibilities
+            var leftCollision = (head.col === 0),
+                topCollision = (head.row === 0),
+                rightCollision = (head.col === widthInBlocks -1),
+                bottomCollision = (head.row === heightInBlocks - 1);
+
+            //any one of these means we have a collision    
+            var wallCollision = leftCollision || topCollision || rightCollision || bottomCollision;
+            //otherwise you haven't hit yourself
+            var selfCollision = false;
+
+            //But now we check if you are hitting yourself...
+            for (var i = 0; i < this.segments.length; i++) {}
+                if (head.equal(this.segments[i])) {
+                    //stop hitting yourself!! 
+                    selfCollision = true;
+                }
+            }
+            //return the bool val
+            return wallCollision || selfCollision;
+        };
+
         //keypress event handler
 
         var gameOver = function () {

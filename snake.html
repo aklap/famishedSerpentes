@@ -51,6 +51,26 @@
             ctx.fillRect(x, y, blockSize, blockSize);
         }
 
+        //circle draw function
+        var circle = function (x, y, radius, fillCircle) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI*2, false);
+            if(fillCircle === true) {
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            };
+        };
+
+        //all blocks can inherit this; they are either sq or circle
+        //drawCircle calls the above function 
+        Block.prototype.drawCircle = function (color) {
+            var centerX = this.col * blockSize + blockSize /2;
+            var centerY = this.col * blockSize + blockSize /2;
+            ctx.fillStyle = color;
+            circle(centerX, centerY, blockSize / 2, true);
+        };
+
         var gameOver = function () {
             clearInterval(intervalId);
             ctx.font = "60px Courier";
@@ -65,8 +85,9 @@
             ctx.clearRect(0, 0, width, height);
             // score++;
             drawScore();
-            var block = new Block(10, 10);
-            block.drawSquare('red');
+            var block = new Block(20, 20);
+            block.drawCircle('red');
+            // block.drawSquare('red');
             // snake.Move();
             // snake.Draw();
             // apple.draw();

@@ -99,6 +99,46 @@
             }
         };
 
+        //create a function to 'move' our snake 
+        Snake.prototype.move = function () {
+            var head = this.segments[0];
+            var newHead;
+
+            this.direction = this.nextDirection;
+
+            //set conditionals for all directions which will match to a keypress event
+            if (this.direction === "right") {
+                newHead = new Block(head.col + 1, head.row);
+            } else if (this.direction === "down") {
+                newHead = new Block(head.col + 1, head.row +1);
+            } else if (this.direction === "left") {
+                newHead = new Block(head.col - 1, head.row);
+            } else if (this.direction === "up") {
+                newHead = new Block(head.col, head.row - 1);
+            };
+
+            //check if our snake hits something, if so exit the program
+            if (this.checkCollision(newHead) {
+                gameOver();
+                return;
+            })
+            
+            //remove the first segment from the snake body
+            this.segments.unshift(newHead);
+
+            //if the new head of the snake is in the same spot as the apple, then increase score and move apple
+            //if it's not in the same spot then remove the last segment of the snake body
+            if (newHead.equal(apple.position)) {
+                score++;
+                apple.move();
+            } else {
+                this.segments.pop();
+            }
+        };
+
+        //check collision method
+        //keypress event handler
+
         var gameOver = function () {
             clearInterval(intervalId);
             ctx.font = "60px Courier";
@@ -112,6 +152,8 @@
             //challenge: increase score by 1 and redraw every 100ms
             ctx.clearRect(0, 0, width, height);
             // score++;
+            var snake = new Snake();
+            snake.draw();
             drawScore();
             var block = new Block(20, 20);
             block.drawCircle('red');

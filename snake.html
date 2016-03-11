@@ -71,11 +71,25 @@
             circle(centerX, centerY, blockSize / 2, true);
         };
 
-        //check for collision between blocks
+        //check for collision between blocks; return bool val 
         Block.prototype.equal = function (otherBlock) {
             return this.col === otherBlock.col && this.row === otherBlock.row;
         };
 
+        //create a snake constructor function; the snake is made up of chunks of blocks called segments
+        var Snake = function () {
+            //each snake has a property called segments, an array of block objs 
+            this.segments = [
+                new Block(7, 5),
+                new Block(6, 5),
+                new Block(5, 5)
+            ];
+
+            //each snake has a direction
+            this.direction = "right";
+            //and each snake has a next direction
+            this.nextDirection = "right";
+        };
 
         var gameOver = function () {
             clearInterval(intervalId);

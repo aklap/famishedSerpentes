@@ -91,6 +91,14 @@
             this.nextDirection = "right";
         };
 
+        //create an inherited draw function
+        //loop over segments and draw each one, calling on inherited block function drawSquare
+        Snake.prototype.draw = function () {
+            for (var i = 0; i < this.segments.length; i++) {
+                this.segments[i].drawSquare('green');
+            }
+        };
+
         var gameOver = function () {
             clearInterval(intervalId);
             ctx.font = "60px Courier";

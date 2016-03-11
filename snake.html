@@ -47,7 +47,9 @@
         }
 
         var intervalId = setInterval(function () {
-            // ctx.clearRect(0, 0, width, height);
+            //challenge: increase score by 1 and redraw every 100ms
+            ctx.clearRect(0, 0, width, height);
+            score++;
             drawScore();
             // snake.Move();
             // snake.Draw();

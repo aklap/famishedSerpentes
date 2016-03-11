@@ -71,6 +71,12 @@
             circle(centerX, centerY, blockSize / 2, true);
         };
 
+        //check for collision between blocks
+        Block.prototype.equal = function (otherBlock) {
+            return this.col === otherBlock.col && this.row === otherBlock.row;
+        };
+
+
         var gameOver = function () {
             clearInterval(intervalId);
             ctx.font = "60px Courier";

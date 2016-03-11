@@ -162,6 +162,30 @@
         };
 
         //keypress event handler
+        //we have a js object or hash of keys and their string equivalent
+        var directions = {
+            37: "left",
+            38: "up",
+            39: "right",
+            40: "down"
+        };
+
+        //on keydown we query the event object to get the keycode and get the string
+        $("body").keydown(function(event){
+            var newDirection = directions[event.keyCode];
+            //as long as it's a key we have in our directions obj, assign the newDirection to the key pressed
+            if (newDirection !== undefined) {
+                snake.setDirection(newDirection);
+            }
+        });
+
+        //create an apple constructor function
+        var Apple = function () {
+            this.position = new Block(10, 10);
+        }
+
+        //create an apple draw function
+        
 
         var gameOver = function () {
             clearInterval(intervalId);

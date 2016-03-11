@@ -37,20 +37,36 @@
             ctx.fillText("Score:" + score, blockSize, blockSize);
         }
 
+        //block constructor function
+        var Block = function (col, row) {
+            this.col = col;
+            this.row = row;
+        };
+
+        //add drawSquare method for 'apple'
+        Block.prototype.drawSquare = function (color) {
+            var x = this.col * blockSize;
+            var y = this.row * blockSize;
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, blockSize, blockSize);
+        }
+
         var gameOver = function () {
             clearInterval(intervalId);
             ctx.font = "60px Courier";
             ctx.fillStyle = "Black";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText("Game over!", width /2, height/2);
+            ctx.fillText("Game over!", width / 2, height / 2);
         }
 
         var intervalId = setInterval(function () {
             //challenge: increase score by 1 and redraw every 100ms
             ctx.clearRect(0, 0, width, height);
-            score++;
+            // score++;
             drawScore();
+            var block = new Block(10, 10);
+            block.drawSquare('red');
             // snake.Move();
             // snake.Draw();
             // apple.draw();

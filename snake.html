@@ -161,6 +161,21 @@
             return wallCollision || selfCollision;
         };
 
+        //function to prevent snake from running back over itself
+        Snake.prototype.setDirection = function (newDirection) {
+            if(this.direction === "up" && newDirection === "down") {
+                return;
+            } else if (this.direction === "right" && newDirection === "left") {
+                return;
+            } else if (this.direction === "left" && newDirection === "right") {
+                return;
+            } else if (this.direction === "down" && newDirection === "up") {
+                return;
+            }
+            //if the snake isn't running over itself, than assign the new direction
+            this.nextDirection = newDirection;
+        };
+
         //keypress event handler
         //we have a js object or hash of keys and their string equivalent
         var directions = {
